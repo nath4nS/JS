@@ -1,11 +1,16 @@
-let a = 72;
+// Sistema de gastos familiares
 
-if( a > 90) {
-    console.log('A')
-} else if(a >= 80 && a <= 89 ) {
-    console.log('B')
-} else if(a >= 70 && a <= 79 ) {
-    console.log('C')
-} else if(a >= 70 && a <= 79 ) {
-    console.log('D')
-} 
+function Calcular() {
+    receitas({
+        salario: 2500
+    })
+
+    despesas({
+        agua: 150,
+        luz: 100,
+        seguro: 250,
+        alimentacao: 450,
+        academia: 80,
+        faculdade: 350
+    })
+}
