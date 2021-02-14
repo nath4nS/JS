@@ -1,45 +1,68 @@
-/*### Celsius em fahrenheit
+/* 
+  Buscando e contando dados em Arrays
 
-    Crie uma função que receba uma string em celsius ou
-    fahrenheit e faça a transformação de uma unidade para
-    outra
+    Baseado no Array de livros por categoria abaixo, faça os seguintes desafios
 
-    C = (F - 32) * 5/9
-
-    F = C * 9/5 + 32
+        * Contar o número de categorias e o número de livros em cada categoria
+        * Contar o número de autores
+        * Mostrar livros do autor Augusto Cury
+        * Transformar a função acima em uma função que irá receber o nome do autor e
+        devolver os livros desse autor.
 */
 
-// transformDegree('50F')
-function transformDegree(degree) {
-    const celsiusExists = degree.toUpperCase().includes('C')
-    const fahrenheitExists = degree.toUpperCase().includes('F')
+const booksByCategory = [
+    {
+        category: "Riqueza",
+        books: [
+            {
+                title: "Os segredos da mente milionária",
+                author: "T. Harv Eker",
+            },
+            {
+                title: "O homem mais rico da babilônia",
+                author: "George S. Clason",
+            },
+            {
+                title: "Pai rico, pai pobre",
+                author: "Robert T. Kiyosaki e Sharon L. Lechter",
+            },
+        ],
+    },
+    {
+        category: "Inteligência Emocional",
+        books: [
+            {
+                title: "Voce é insubstituível",
+                author: "Augusto Cury",
+            },
+            {
+                title: "Ansiedade - Como enfrentar o mal do século",
+                author: "Augusto Cury",
+            },
+            {
+                title: "Os 7 hábiots das pessoas altamente eficazes",
+                author: "Stephen R. Covey",
+            },
+        ],
+    },
+];
 
-    // fluxo de erro
-    if(!celsiusExists && !fahrenheitExists) {
-        throw new Error('Grau não identificado')
-    }
+const totalCategories = booksByCategory.length
 
-    // fluxo ideal, F -> C
-    let updatedDegree = Number(degree.toUpperCase().replace("F", ""));
-    let formula = fahrenheit => (fahrenheit - 32) * 5/9
-    let degreeSign = 'C'
-
-
-    // fluxo alternatico C ->
-    if(celsiusExists) {
-        updatedDegree = Number(degree.toUpperCase().replace("C", ""));
-        formula = celsius => celsius * 9/5 + 32
-        degreeSign = 'F'
-    }
-
-    return formula(updatedDegree) + degreeSign
-
+console.log(totalCategories);
+for(let category of booksByCategory) {
+    console.log('Total de livros da categoria: ', category.category)
+    console.log(category.books.length)
 }
 
-try {
-    console.log(transformDegree('10C'))
-    console.log(transformDegree('50F'))
-    transformDegree('50z')
-} catch (error) {
-    console.log(error.message)
+function countAuthors() {
+    let authors = [];
+
+    for(let category of booksByCategory) {
+        for(let book of category.books) {
+            if(authors.indexOf(book.author) == -1) {
+                authors.push(book.title)
+            }
+        }
+    }
 }
